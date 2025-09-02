@@ -34,4 +34,4 @@ Made with **HTML, CSS, and vanilla JavaScript** as a learning exercise and portf
    ```bash
    git clone https://github.com/YOUR-USERNAME/setlist-builder.git
    or
-   github websites access: 
+   github websites access: http://anubis7star.github.io/Set-list
