@@ -1,36 +1,58 @@
-const container = document.querySelector("#songList");
-container.addEventListener("click", (event) => {
-  const deleteBtn = event.target.closest('[data-action="delete"]');
-  if (!deleteBtn) return; // not a delete click
-  // now deleteBtn is *the exact button* you clicked
-  deleteBtn.closest('.row').remove();
+// --- Boot ---
+document.addEventListener("DOMContentLoaded", init);
 
-  renumber();
-});
+// --- Cached static elements (single-instance nodes) ---
+const els = {};
 
-const dialog = document.querySelector(".dialog-backdrop");
+function cacheEls() {
+  els.songCount    = document.querySelector("#song-count");
+  els.container    = document.querySelector("#songList");
+  els.dialog       = document.querySelector(".dialog-backdrop");
+  els.newSongBtn   = document.getElementById("add-song");
+  els.dialogCancel = document.getElementById("dialog-cancel"); // make sure this id exists in HTML
+}
 
-const new_song = document.getElementById("add-song");
-new_song.addEventListener("click", () => {
-  dialog.style.display = "flex";
-});
-
-const dialog_exit = document.getElementById("dialog-cancel");
-dialog_exit.addEventListener("click", () => {
-  dialog.style.display = "none";
-})
-
-// Renumber the list of songs
-
+// --- Helpers (query dynamic stuff fresh each time) ---
 function renumber() {
-  const rows = document.querySelectorAll("#songList .row");
-  
+  const rows = document.querySelectorAll("#songList .row"); // fresh snapshot
   rows.forEach((row, index) => {
     const numberCell = row.querySelector(".n");
-    numberCell.textContent = index + 1; // index starts at 0, so add 1
+    if (numberCell) numberCell.textContent = index + 1;
   });
 }
 
-const input_song_title = document.querySelector("#input-song-title");
-let song_title = input_song_title.value;
+function updateSongCount() {
+  const rows = document.querySelectorAll("#songList .row"); // fresh snapshot
+  if (els.songCount) els.songCount.textContent = rows.length;
+}
 
+// --- Events wiring (one place) ---
+function bindEvents() {
+  // Delete buttons (event delegation on the list container)
+  els.container?.addEventListener("click", (event) => {
+    const deleteBtn = event.target.closest('[data-action="delete"]');
+    if (!deleteBtn) return;
+
+    deleteBtn.closest(".row")?.remove();
+    renumber();
+    updateSongCount();
+  });
+
+  // Open dialog
+  els.newSongBtn?.addEventListener("click", () => {
+    if (els.dialog) els.dialog.style.display = "flex";
+  });
+
+  // Close dialog
+  els.dialogCancel?.addEventListener("click", () => {
+    if (els.dialog) els.dialog.style.display = "none";
+  });
+}
+
+// --- Entry point ---
+function init() {
+  cacheEls();
+  bindEvents();
+  renumber();        // sync numbering on first paint
+  updateSongCount(); // sync total on first paint
+}

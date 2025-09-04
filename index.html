@@ -4,9 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Simplesound – Setlist Builder</title>
+  <script src="scripts.js"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <link rel="stylesheet" href="styles.css">
   <!-- Top bar -->
   <div class="topbar">
     <div class="container flex items-center justify-between" style="padding:10px 16px">
@@ -14,14 +15,22 @@
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         <div>
           <div style="font-weight:600">Simplesound - Setlist builder</div>
-          <div class="sub">Total: 12 songs • 00:45:10</div> <!-- To be replaced (functionality...)-->
+          <div class="sub">Total: <span id="song-count">0</span> songs</div>
         </div>
       </div>
       <div class="flex items-center gap-2 no-print">
-        <button class="btn" title="Print">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><rect x="6" y="14" width="12" height="8" rx="2"/><path d="M6 18h12"/><path d="M6 14h12"/><path d="M6 10h12"/></svg>
+        
+        <!-- Unused button (I dont see its use yet) -->
+        <button style="display:none" class="btn" title="Print">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9V2h12v7"/>
+            <rect x="6" y="14" width="12" height="8" rx="2"/>
+            <path d="M6 18h12"/><path d="M6 14h12"/>
+            <path d="M6 10h12"/>
+          </svg>
           Print
         </button>
+
         <button class="btn btn-primary" id="add-song" title="New song">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           New song
@@ -218,7 +227,6 @@
       <div class="foot"><button id= "dialog-cancel" class="btn">Cancel</button><button class="btn btn-primary">Add</button></div>
     </div>
   </div>
-
   <!-- Notes for devs (invisible to users) -->
   <!--
     Wiring plan:
@@ -226,7 +234,6 @@
     - Use data- attributes on rows (e.g., data-id) for reorder/selection.
     - Attach open/close for dialog and form submission.
   -->
-    <script src="scripts.js"></script>
 </body>
 
 </html>
