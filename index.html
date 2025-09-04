@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Setlist Builder – Design Mockup</title>
+  <title>Simplesound – Setlist Builder</title>
 </head>
 <body>
   <link rel="stylesheet" href="styles.css">
@@ -13,7 +13,7 @@
       <div class="flex items-center gap-2">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         <div>
-          <div style="font-weight:600">Setlist Builder</div>
+          <div style="font-weight:600">Simplesound - Setlist builder</div>
           <div class="sub">Total: 12 songs • 00:45:10</div> <!-- To be replaced (functionality...)-->
         </div>
       </div>
@@ -38,7 +38,7 @@
         <div class="controls">
           <div class="field">
             <label class="label">Search</label>
-            <input type="text" placeholder="Search title, artist, tag…" readonly>
+            <input type="text" placeholder="Search title, artist, tag…">
           </div>
           <div class="field">
             <label class="label">Key</label>
@@ -51,20 +51,19 @@
           </div>
           <div class="field">
             <label class="label">BPM min</label>
-            <input type="number" placeholder="0" readonly>
+            <input type="number" placeholder="0">
           </div>
           <div class="field">
             <label class="label">BPM max</label>
-            <input type="number" placeholder="300" readonly>
+            <input type="number" placeholder="300">
           </div>
           <div class="field">
             <label class="label">Sort by</label>
-            <select disabled>
+            <select>
               <option>Manual</option>
               <option>Title</option>
               <option>Artist</option>
               <option>BPM</option>
-              <option>Duration</option>
             </select>
           </div>
           <div class="field">
@@ -101,7 +100,7 @@
       <div>Artist</div>
       <div>Key</div>
       <div>BPM</div>
-      <div>Duration / Tags</div>
+      <div>Tags</div>
       <div></div>
     </div>
     <div class="spacer"></div>
@@ -114,7 +113,6 @@
       <div class="mono">G</div>
       <div class="mono">96</div>
       <div>
-        <span class="badge">03:36</span>
         <span class="tag">ballad</span>
         <span class="tag">duet</span>
       </div>
@@ -145,7 +143,6 @@
       <div class="mono">B</div>
       <div class="mono">86</div>
       <div>
-        <span class="badge">04:26</span>
         <span class="tag">pop</span>
       </div>
       <div class="flex items-center" style="justify-content:flex-end;gap:6px">
@@ -162,7 +159,6 @@
       <div class="mono">A</div>
       <div class="mono">120</div>
       <div>
-        <span class="badge">03:02</span>
         <span class="tag">classic</span>
       </div>
       <div class="flex items-center" style="justify-content:flex-end;gap:6px">
@@ -178,15 +174,45 @@
   <div class="dialog-backdrop" id="dialog">
     <div class="dialog">
       <div class="head">Add song</div>
+      
       <div class="body">
+
         <div class="flex gap-3" style="flex-wrap:wrap">
-          <div class="field" style="flex:1 1 260px"><label class="label">Title</label><input type="text" placeholder="Song title" readonly></div>
-          <div class="field" style="flex:1 1 260px"><label class="label">Artist</label><input type="text" placeholder="Artist / Band" readonly></div>
-          <div class="field" style="flex:1 1 140px"><label class="label">Key</label><input type="text" placeholder="C / Db / …" readonly></div>
-          <div class="field" style="flex:1 1 140px"><label class="label">BPM</label><input type="number" placeholder="120" readonly></div>
-          <div class="field" style="flex:1 1 160px"><label class="label">Duration</label><input type="text" placeholder="03:00" readonly></div>
-          <div class="field" style="flex:1 1 320px"><label class="label">Tags</label><input type="text" placeholder="pop, opener, acoustic" readonly></div>
-          <div class="field" style="flex:1 1 100%"><label class="label">Notes</label><input type="text" placeholder="Capo 2, drop‑D, …" readonly></div>
+          <div class="field" style="flex:1 1 260px">
+            <label class="label">Title</label>
+            <input id="input-song-title" type="text" placeholder="Song title">
+          </div>
+
+          <div class="field" style="flex:1 1 260px">
+            <label class="label">Artist</label>
+            <input type="text" placeholder="Artist / Band">
+          </div>
+
+          <div class="field" style="flex:1 1 140px">
+            <label class="label">Key</label>
+            <input type="text" placeholder="C / Db / …">
+          </div>
+
+          <div class="field" style="flex:1 1 140px">
+            <label class="label">BPM</label>
+            <input type="number" placeholder="120">
+          </div>
+
+          <div class="field" style="flex:1 1 160px">
+            <label class="label">Duration</label>
+            <input type="text" placeholder="03:00">
+          </div>
+
+          <div class="field" style="flex:1 1 320px">
+            <label class="label">Tags</label>
+            <input type="text" placeholder="pop, opener, acoustic">
+          </div>
+
+          <div class="field" style="flex:1 1 100%">
+            <label class="label">Notes</label>
+            <input type="text" placeholder="Capo 2, drop‑D, …">
+          </div>
+
         </div>
       </div>
       <div class="foot"><button id= "dialog-cancel" class="btn">Cancel</button><button class="btn btn-primary">Add</button></div>

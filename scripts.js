@@ -31,4 +31,6 @@ function renumber() {
   });
 }
 
+const input_song_title = document.querySelector("#input-song-title");
+let song_title = input_song_title.value;
 
